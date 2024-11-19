@@ -28,7 +28,8 @@ gulp.task('compress_js', function() {
 //gulp.task('start', gulp.series('sass', 'compress_js', function() {
     gulp.task('start', gulp.series('sass', function() {
     browserSync.init({
-        proxy: "http://localhost:8212/www8212/dswpbase",
+        //proxy: "http://localhost:8212/www8212/dswpbase",
+        proxy: "https://arabat.local.com",
         notify: false
     });
 
