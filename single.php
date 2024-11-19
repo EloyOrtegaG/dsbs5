@@ -1,80 +1,41 @@
-<?php
-/**
- * The Template for displaying all single posts.
- */
-
-get_header();
-?>
+<?php get_header(); ?>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    
 <div class="container">
-	<div class="row g-5">
-		<div class="col-lg-9 pe-lg-5">
-			<?php
-
-			if (have_posts()):
-				while (have_posts()):
-					the_post();
-
-					get_template_part('content', 'single');
-
-					// If comments are open or we have at least one comment, load up the comment template.
-					if (comments_open() || get_comments_number()):
-						comments_template();
-					endif;
-				endwhile;
-			endif;
-
-			wp_reset_postdata();
-
-			$count_posts = wp_count_posts();
-
-			if ($count_posts->publish > '1'):
-				$next_post = get_next_post();
-				$prev_post = get_previous_post();
-				?>
-				<hr class="mt-5">
-				<div class="post-navigation d-flex justify-content-between">
-					<?php
-					if ($prev_post) {
-						$prev_title = get_the_title($prev_post->ID);
-						?>
-						<div class="pr-3">
-							<a class="previous-post btn btn-lg btn-outline-secondary"
-								href="<?php echo esc_url(get_permalink($prev_post->ID)); ?>"
-								title="<?php echo esc_attr($prev_title); ?>">
-								<span class="arrow">&larr;</span>
-								<span class="title"><?php echo wp_kses_post($prev_title); ?></span>
-							</a>
-						</div>
-						<?php
-					}
-					if ($next_post) {
-						$next_title = get_the_title($next_post->ID);
-						?>
-						<div class="pl-3">
-							<a class="next-post btn btn-lg btn-outline-secondary"
-								href="<?php echo esc_url(get_permalink($next_post->ID)); ?>"
-								title="<?php echo esc_attr($next_title); ?>">
-								<span class="title"><?php echo wp_kses_post($next_title); ?></span>
-								<span class="arrow">&rarr;</span>
-							</a>
-						</div>
-						<?php
-					}
-					?>
-				</div><!-- /.post-navigation -->
-			</div>
-			
-			<?php
-                    get_sidebar();
+  <div class="row">
+    <div class="col-md-9">
+      <?php if( have_posts () ) : while (have_posts () ) : the_post(); ?>
+      <div class="mw-57 mx-auto">          
+          <div class="clearfix"></div>
+          
+          <div class="page-header">
+            <h2> <?php the_title(); ?> </h2>
+            <p class="datos-noticia">
+              <!--<i class="fa fa-user"></i> <?php the_author(); ?> | -->
+              <i class="far fa-calendar-alt"></i> <?php the_time('j, F Y'); ?> | <a href="<?php the_permalink() ?>#comments" title="Ver comentarios" class="mr-15">
+              
+            </p>                    
+          </div>        
+          <?php
+           //the_post_thumbnail('single-principal', array('class'=>'img-fluid mb-3 float-right'));
             ?>
-			
-			<!-- <div id="ds_sidebar" class="col-lg-3">
-					<?php dynamic_sidebar('ds_sidebar'); ?>
-					</div>  -->
+          <?php the_content(); ?>        
+          
+        <div class="clearfix"></div>
+        <div>
+          <p class="mt-30 mb-0"><?php echo 'Comparte este artículo:' ?></p>         
+          <?php get_template_part('content', 'share');?>
+        </div>
+        
+        </div>
+        <?php endwhile; else : ?>                 
+      <?php endif; ?>
+      </div>
+	  <?php get_sidebar(); ?>
 
-		</div>
-	</div>
-	<?php
-			endif;
-
-			get_footer();
+       
+      
+  </div>
+</div>
+    
+<?php get_footer(); ?>

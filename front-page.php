@@ -105,11 +105,11 @@ $query_carousel = new WP_Query($values_carousel);
 </div>
 
 <!-- fin carousel -->
-<?php the_content(); ?>
+
 
 
 <div class="container">
-
+<?php the_content(); ?>
     <div class="row listado-posts mt-5">
         <?php
         $args = array(
