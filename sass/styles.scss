@@ -8,6 +8,10 @@ $danger: #ff457b;
 $dark: #18181d; 
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+:root {
+  border: 0; /*Quitar border danger después de <html>*/
+}
 /*WP*/
 .alignnone {
     margin: 5px 20px 20px 0;
@@ -413,3 +417,4 @@ footer {
   border-top: 1px solid #ccc;
 }
 /*Fin Footer*/
+
